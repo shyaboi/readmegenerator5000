@@ -12,7 +12,9 @@ inquirer
 
     axios.get(queryUrl).then(function(res) {
       const repoNames = res.data.map(function(repo) {
-        return repo.name;
+        // console.log(res.data)
+        return repo.owner.avatar_url;
+        
       });
 
       const repoNamesStr = repoNames.join("\n");
@@ -21,8 +23,8 @@ inquirer
         if (err) {
           throw err;
         }
-
         console.log(`Saved ${repoNames.length} repos`);
       });
     });
   });
+  
