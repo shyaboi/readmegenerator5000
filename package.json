@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/shyaboi/readmegenerator5000/issues"
   },
-  "homepage": "https://github.com/shyaboi/readmegenerator5000#readme"
+  "homepage": "https://github.com/shyaboi/readmegenerator5000#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "inquirer": "^7.0.5"
+  }
 }
