@@ -24,13 +24,13 @@ const questions = [
 
 // make 
 function makeHTML(lic) {
-  return `) # \n${lic}\n`
+  return `) \n ## ${lic} licence\n`
 }
 function makeTitle(tit){
   return `# ${tit} \n![](`
 }
 function makeDes(des){
-  return `)${des}`
+  return `) \n${des}`
 }
 
 
