@@ -7,23 +7,30 @@ const questions = [
     name: "username"
   },
   {
-    message: "What is your favorite color?",
-    name: "favcolor",
+    message: "Which Licence does your project fall under?",
+    name: "licence",
     type: "list",
-    choices: ['red', 'blue', 'green']
+    choices: ['Community', 'MIT', 'GNU GPLv3']
   },
   {
     message: "What is the title of your project?",
     name:'title'
+  },
+  {
+    message: "Write a short description of your project",
+    name:'description'
   }
 ]
 
 // make 
-function makeHTML(color) {
-  return `<p># ${color}</p>`
+function makeHTML(lic) {
+  return `) # \n${lic}\n`
 }
 function makeTitle(tit){
-  return `# ${tit} \n`
+  return `# ${tit} \n![](`
+}
+function makeDes(des){
+  return `)${des}`
 }
 
 
@@ -34,7 +41,7 @@ inquirer
   .prompt(questions)
   .then(function(ans) {
     // ans functions--------------------------------------------------------------------------------
-    const { username, favcolor, title } = ans
+    const { username, licence, title, description } = ans
     // query url-------------------------------------------------------------------------------------
     const queryUrl = `https://api.github.com/users/${username}/repos?per_page=1`;
     // axios get for url-----------------------------------------------------------------------------
@@ -58,9 +65,11 @@ inquirer
         if (err) {
           throw err;
         }
-        console.log(`Saved ${repoNames.length} repos`);
       });
-      fs.appendFile("readme.md", makeHTML(favcolor), function (err) {
+      fs.appendFile("readme.md", makeHTML(licence), function (err) {
+        console.log(err);
+      })
+      fs.appendFile("readme.md", makeDes(description), function (err) {
         console.log(err);
       })
     
