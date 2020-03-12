@@ -22,31 +22,44 @@ const questions = [
     name: "description"
   },
   {
-    message:'How do you install this?',
-    name:'install'  
+    message:'How many install steps are there?',
+    type:"list",
+    name:'install',
+    choices: ["1", 
+    "2 or mor"
+  ]
   }
 ];
-
+const secondQs = [
+  {
+    message:'And Then.......?',
+    name:'installNum'
+  }
+]
 // make
 function makeHTML(lic) {
-  return `\n # ${lic}licence\n`;
+  return `--- \n # ${lic}licence\n ---`;
 }
 function makeTitle(tit) {
   return `# ${tit}\n`;
 }
 function makeDes(des) {
-  return `\n # Description \n${des}`;
+  return `--- \n # Description \n${des} \n---`;
 }
 
 function h2(stuf){
-  return `\n# Installation:\n* ${stuf}`;
+  return `\n# Installation:\n`;
+}
+function andThen(secondAns){
+  return `\n* ${secondAns}`;
+
 }
 var url =''
 var alt = 'oof'
 // console.log(url);
 
 function addPhoto(alt, url) {
-  return `\n![${alt}](${url})`;
+  return `\n![${alt}](${url})\n`;
 }
 // console.log(url);
 // inquirer---------------------------------------------------------------------------------------
@@ -75,13 +88,66 @@ inquirer
       const newTitle = makeTitle(title)
       const newIns = h2(install)
       // const newIns = h2(install)
-      if (install==="do it") {
+      if (install==="2 or mor") {
         inquirer
         .prompt(secondQs)
+        // .prompt(secondQs)
         .then(function(ans2){
-          console.log("things are happening");
+          const { installNum } = ans2;
+          const anDen = andThen(installNum)
+          fs.appendFile("readme.md", newIns, function(err) {
+            // console.log(err);
+            // console.log(stuf);
+          });
+          fs.appendFile("readme.md", anDen, function(err) {
+          });
+          if (installNum!="") {
+            inquirer
+            .prompt(secondQs)
+            .then(function(ans3){
+              const { installNum } = ans3;
+              const anDen = andThen(installNum)
+              fs.appendFile("readme.md", anDen, function(err) {
+              });
+              if (installNum!="") {
+                inquirer
+                .prompt(secondQs)
+                .then(function(ans4){
+                  const { installNum } = ans4;
+                  const anDen = andThen(installNum)
+                  fs.appendFile("readme.md", anDen, function(err) {
+                  });
+                  if (installNum!="") {
+                    inquirer
+                    .prompt(secondQs)
+                    .then(function(ans5){
+                      const { installNum } = ans5;
+                      const anDen = andThen(installNum)
+                      fs.appendFile("readme.md", anDen, function(err) {
+                      });
+                      if (installNum!="") {
+                        inquirer
+                        .prompt(secondQs)
+                        .then(function(ans6){
+                          const { installNum } = ans6;
+                          const anDen = andThen(installNum)
+                          fs.appendFile("readme.md", anDen, function(err) {
+                          });
+                        })  
+                      }
+                    })  
+                  }
+                })  
+              }
+            })  
+          }
+           else {
+            
+            console.log("things are happening");
+          }
+        
         })
-        throw err;
+        // throw err;
       }
       fs.writeFile("readme.md", newTitle, function(err) {
         // console.log(err);
@@ -94,10 +160,6 @@ inquirer
                 // console.log(err);
               });
             });
-                fs.appendFile("readme.md", newIns, function(err) {
-                  // console.log(err);
-                  // console.log(stuf);
-                });
       });
 
     });
