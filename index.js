@@ -97,9 +97,9 @@ inquirer
           const anDen = andThen(installNum)
           fs.appendFile("readme.md", newIns, function(err) {
             // console.log(err);
+              fs.appendFile("readme.md", anDen, function(err) {
+              });
             // console.log(stuf);
-          });
-          fs.appendFile("readme.md", anDen, function(err) {
           });
           if (installNum!="") {
             inquirer
@@ -128,11 +128,51 @@ inquirer
                       if (installNum!="") {
                         inquirer
                         .prompt(secondQs)
-                        .then(function(ans6){
-                          const { installNum } = ans6;
+                        .then(function(ans7){
+                          const { installNum } = ans7;
                           const anDen = andThen(installNum)
                           fs.appendFile("readme.md", anDen, function(err) {
                           });
+                          if (installNum!="") {
+                            inquirer
+                            .prompt(secondQs)
+                            .then(function(ans8){
+                              const { installNum } = ans8;
+                              const anDen = andThen(installNum)
+                              fs.appendFile("readme.md", anDen, function(err) {
+                              });
+                              if (installNum!="") {
+                                inquirer
+                                .prompt(secondQs)
+                                .then(function(ans9){
+                                  const { installNum } = ans9;
+                                  const anDen = andThen(installNum)
+                                  fs.appendFile("readme.md", anDen, function(err) {
+                                  });
+                                  if (installNum!="") {
+                                    inquirer
+                                    .prompt(secondQs)
+                                    .then(function(ans10){
+                                      const { installNum } = ans10;
+                                      const anDen = andThen(installNum)
+                                      fs.appendFile("readme.md", anDen, function(err) {
+                                      });
+                                      if (installNum!="") {
+                                        inquirer
+                                        .prompt(secondQs)
+                                        .then(function(ans11){
+                                          const { installNum } = ans11;
+                                          const anDen = andThen(installNum)
+                                          fs.appendFile("readme.md", anDen, function(err) {
+                                          });
+                                        })  
+                                      }
+                                    })  
+                                  }
+                                })  
+                              }
+                            })  
+                          }
                         })  
                       }
                     })  
